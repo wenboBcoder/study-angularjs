@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../module/angular.js"></script>
+    <link rel="stylesheet" href="../module/bootstrap.css">
+    <link rel="stylesheet" href="../module/bootstrap-theme.css">
+    <script>
+         angular.module("exampleApp",[]).controller("defaultCtrl",function($scope){
+
+         })
+    </script>
+</head>
+<body>
+    <div id="todaPanel" class="panel" ng-controller="defaultCtrl">
+        <form name="myForm" novalidate>
+            <div class="well">
+                <div class="checkbox">
+                        <label>
+                                <!-- 注意：ng-true-value,ng-false-value的值必须是双引号里在包一层单引号 -->
+                                <input type="checkbox" name="sample" ng-model="inputValue" ng-true-value="'Hurrah!'" ng-false-value="'Boo!'">
+                                this is a checkbox
+
+                            </label>
+                </div>
+            </div>
+            <div class="well">
+                <p>Model Value:{{inputValue}}</p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

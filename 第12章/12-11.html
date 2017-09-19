@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../module/angular.js"></script>
+    <link rel="stylesheet" href="../module/bootstrap.css">
+    <link rel="stylesheet" href="../module/bootstrap-theme.css">
+    <style>
+    </style>
+    <script>
+        angular.module("exampleApp",[]).controller("defaultCtrl",function($scope){
+            $scope.requireValue=true;
+            $scope.matchPattern=new RegExp("^[a-z]")
+        })
+    </script>
+</head>
+<body>
+    <div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+        <form name="myForm" novalidate>
+            <div class="well">
+                <div class="form-group">
+                    <label>Text；</label>
+                    <input type="text" name="sample" class="form-control" ng-model="inputValue" ng-required="requireValue"
+                    ng-minlength="3" ng-maxlength="10" ng-pattern="matchPattern">
+                </div>
+            </div>
+            <div class="well">
+                <p>required Error :{{myForm.sample.$error.required}}</p>
+                <p>min length error:{{myForm.sample.$error.minlength}}</p>
+                <p>max length error:{{myForm.sample.$error.maxlength}}</p>
+                <p>pattern error:{{myForm.sample.$error.pattern}}</p>
+                <p>element valid {{myForm.sample.$valid}}</p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
