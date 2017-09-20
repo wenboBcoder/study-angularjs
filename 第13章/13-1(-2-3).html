@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../module/angular.js"></script>
+    <link rel="stylesheet" href="../module/bootstrap.css">
+    <link rel="stylesheet" href="../module/bootstrap-theme.css">
+    <script>
+        angular.module("exampleApp",[]).controller("simpleCtrl",function($scope){
+            $scope.city="London";
+            $scope.getCountry=function(city){
+                switch(city){
+                    case "London":
+                       return "UK";
+                    case "New York":
+                       return "USA";   
+                }
+            }
+        })
+    </script>
+</head>
+<body>
+    <div class="well" ng-controller="simpleCtrl">
+        <p>the city is:{{city}}</p>
+        <p>the country is :{{getCountry(city)||"Unknown"}}</p>
+    </div>
+</body>
+</html>
