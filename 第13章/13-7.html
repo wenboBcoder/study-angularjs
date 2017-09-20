@@ -46,11 +46,11 @@
         <button class="btn btn-primary" ng-click="setAddress('shippingZip',zip)">
             Save Shipping
         </button>
-        
+        <!-- 这里也可以添加下面的div来证明子控制器 -->
     </div>
     <div class="well" ng-controller="secondCtrl">
         {{billingZip}}+{{zip}}
-        <h1>注意：$scope.$broadcast的向下传播只针对同一个控制器或是在这个控制器下的子控制器</h1>
+        <h1>注意：经实验证明$scope.$broadcast的向下传播只针对同一个控制器或是在这个控制器下的子控制器</h1>
     </div>
 </body>
 </html>
