@@ -22,6 +22,8 @@
             $scope.copyAddress=function(){
                 $scope.zip=$scope.billingZip;
             }
+        }).controller("secondCtrl",function($scope){
+
         })
     </script>
 </head>
@@ -44,6 +46,11 @@
         <button class="btn btn-primary" ng-click="setAddress('shippingZip',zip)">
             Save Shipping
         </button>
+        
+    </div>
+    <div class="well" ng-controller="secondCtrl">
+        {{billingZip}}+{{zip}}
+        <h1>注意：$scope.$broadcast的向下传播只针对同一个控制器或是在这个控制器下的子控制器</h1>
     </div>
 </body>
 </html>
