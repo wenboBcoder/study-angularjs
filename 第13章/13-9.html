@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../module/bootstrap.css">
+    <link rel="stylesheet" href="../module/bootstrap-theme.css">
+    <script src="../module/angular.js"></script>
+    <script src="../module/13-9controller(13-10).js"></script>
+</head>
+<body ng-controller="topLevelCtrl">
+    <div class="well">
+        <h4>Top Level Controller</h4>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="reverseText()">Reverse</button>
+                <button class="btn btn-default" type="button" ng-click="changeCase()">Case(upper&lower)</button>
+            </span>
+            <input type="text" class="form-control" ng-model="dataValue">
+        </div>
+    </div>
+    <div class="well" ng-controller="firstChildCtrl">
+        <h4>First Child Controller</h4>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="reverseText()">Reverse</button>
+                <button class="btn btn-default" type="button" ng-click="changeCase()">Case(upper)</button>
+            </span>
+            <input type="text" class="form-control" ng-model="dataValue">
+        </div>
+    </div>
+    <div class="well" ng-controller="secondChildCtrl">
+        <h4>Second Child Controll</h4>
+        <div class="form-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="reverseText()">Reverse</button>
+                <button class="btn btn-default" type="button" ng-click="changeCase()">Case(lower)</button>
+                <button class="btn btn-default" type="button" ng-click="shiftFour()">ShiftFour</button>
+            </span>
+            <input type="text" class="form-control" ng-model="dataValue">
+        </div>
+    </div>
+</body>
+</html>
