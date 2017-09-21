@@ -16,7 +16,7 @@
             $scope.setAddress=function(type,zip){
                 $rootScope.$broadcast('zipCodeUpdated',{
                     type:type,zipCode:zip
-                });
+                });//这一段执行完会立即跳到13行执行，13-15行执行完后，立即返回，执行下面的语句
                 console.log("Type: "+type+" "+zip)
             }
             $scope.copyAddress=function(){
