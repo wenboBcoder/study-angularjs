@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../module/bootstrap.css">
+    <link rel="stylesheet" href="../module/bootstrap-theme.css">
+    <script src="../module/angular.js"></script>
+    <script>
+        angular.module("exampleApp",[])
+        .directive("demoDirective",function(){
+            return function(scope,element,attrs){
+                var listElem=angular.element("<ol>");
+                element.append(listElem);
+                for(var i=0;i<scope.names.length;i++){
+                    var oLi=angular.element("<li>");
+                    var oSpan=angular.element("<span>") 
+                    oSpan.text(scope.names[i]);
+                    oLi.append(oSpan);
+                    listElem.append(oLi);
+                }
+                var buttons=element.find("button");
+                buttons.on("click",function(){
+                    element.find("li").toggleClass("bold")
+                })
+            }
+        })
+        .controller("defaultCtrl",function($scope){
+            $scope.names=["Apples","Bananas","Oranges"]
+        })
+    </script>
+    <style>
+         .bold{font-weight: bold;}
+    </style>
+</head>
+<body ng-controller="defaultCtrl">
+    <h3>Fruit</h3>
+    <div demo-directive>
+        <button>Click me</button>
+    </div>
+</body>
+</html>
