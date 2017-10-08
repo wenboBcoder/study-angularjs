@@ -1,0 +1,70 @@
+<!-- <!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../module/bootstrap.css">
+    <link rel="stylesheet" href="../module/bootstrap-theme.css">
+    <script src="../module/angular.js"></script>
+    <script>
+        angular.module("exampleApp",[])
+            .directive("scopeDemo",function(){
+                return {
+                    template:"<div class='panel-body'>Name:<input ng-model=name ng-change=ch() /></div>",
+                   
+                }
+             })
+            .controller("scopeCtrl",function($scope){
+               $scope.name="aaa"
+               $scope.ch=function(){
+                   $scope.$watch(name,function(newValue,oldValue){
+                       console.log("new:"+newValue+" ;old:"+oldValue)
+                       //这里为什么监听newValue和oldValud都是undefined?
+                   })
+               }
+            })
+            .controller("secondCtrl",function($scope){
+
+            })
+    </script>
+</head>
+<body>
+    <div class="panel panel-default">
+        <div class="panel-body scope-demo" ng-controller="scopeCtrl" scope-demo></div>
+        
+        <div class="panel-body scope-demo" ng-controller="scopeCtrl" scope-demo></div>
+        //这里为什么同样的作用域，但是其中一个变化时，另一个不变化
+    </div>
+</body>
+</html> -->
+<html lang="en" ng-app="exampleApp">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Document</title>
+            <link rel="stylesheet" href="../module/bootstrap.css">
+            <link rel="stylesheet" href="../module/bootstrap-theme.css">
+            <script src="../module/angular.js"></script>
+            <script>
+                angular.module("exampleApp",[])
+                    .directive("scopeDemo",function(){
+                        return {
+                            template:"<div class='panel-body'>Name:<input ng-model=name ng-change=ch() /></div>",
+                            scope:true
+                        }
+                     })
+                    .controller("scopeCtrl",function($scope){
+                      
+                    })
+            </script>
+        </head>
+        <body ng-controller="scopeCtrl">
+            <div class="panel panel-default">
+                <div class="panel-body" scope-demo></div>
+                <div class="panel-body" scope-demo></div>
+            </div>
+        </body>
+        </html>
