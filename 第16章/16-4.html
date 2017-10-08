@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en" ng-app="exampleApp">
 <head>
     <meta charset="UTF-8">
@@ -8,38 +8,41 @@
     <link rel="stylesheet" href="../module/bootstrap.css">
     <link rel="stylesheet" href="../module/bootstrap-theme.css">
     <script src="../module/angular.js"></script>
-    <script>
+    <script type="text/ng-template" id="scopeTemplate">
+         <div class="panel-body">Name:<input ng-model="name" type="text" /></div>
+    </script>
+    <script type="text/javascript">
         angular.module("exampleApp",[])
             .directive("scopeDemo",function(){
                 return {
-                    template:"<div class='panel-body'>Name:<input ng-model=name ng-change=ch() /></div>",
-                   
+                    template:function(){
+                        return angular.element(
+                            document.querySelector("#scopeTemplate")
+                        ).html();
+                    },
+                    scope:true
                 }
              })
             .controller("scopeCtrl",function($scope){
-               $scope.name="aaa"
-               $scope.ch=function(){
-                   $scope.$watch(name,function(newValue,oldValue){
-                       console.log("new:"+newValue+" ;old:"+oldValue)
-                       //这里为什么监听newValue和oldValud都是undefined?
-                   })
-               }
-            })
-            .controller("secondCtrl",function($scope){
-
+                $scope.name="abc"
+                $scope.data={
+                    str:"str"
+                }
             })
     </script>
 </head>
-<body>
+<body ng-controller="scopeCtrl">
     <div class="panel panel-default">
-        <div class="panel-body scope-demo" ng-controller="scopeCtrl" scope-demo></div>
+        <div class="panel-body" scope-demo></div>
+        <div class="panel-body" scope-demo></div>
+              //这里为什么同样的作用域，但是其中一个变化时，另一个不变化 
+             //答：字符串属性，不变化，对象属性变化，这是angular的特性，换成data.str就好
         
-        <div class="panel-body scope-demo" ng-controller="scopeCtrl" scope-demo></div>
-        //这里为什么同样的作用域，但是其中一个变化时，另一个不变化
     </div>
 </body>
-</html> -->
-<html lang="en" ng-app="exampleApp">
+</html>
+-->
+ <html lang="en" ng-app="exampleApp">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,4 +70,4 @@
                 <div class="panel-body" scope-demo></div>
             </div>
         </body>
-        </html>
+        </html> 
