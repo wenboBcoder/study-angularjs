@@ -1,0 +1,44 @@
+<html lang="en" ng-app="exampleApp">
+        
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Document</title>
+            <link rel="stylesheet" href="../module/bootstrap.css">
+            <link rel="stylesheet" href="../module/bootstrap-theme.css">
+            <script src="../module/angular.js"></script>
+            <script type="text/ng-template" id="scopeTemplate">
+                        <div class="panel-body">
+                            <p>Name:<input ng-model="data.name" /></p>
+                            <p>City:<input ng-model="city" /></p>
+                            <p>County:<input ng-model="country">
+                        </div>
+                    </script>
+            <script>
+                angular.module("exampleApp", [])
+                    .directive("scopeDemo", function () {
+                        return {
+                            template: function () {
+                                return angular.element(
+                                    document.querySelector("#scopeTemplate")
+                                ).html();
+                            },
+                            scope: {}
+                        }
+                    })
+                    .controller("scopeCtrl", function ($scope) {
+                        $scope.data = { name: "Adam" };
+                        $scope.city = "London"
+                    })
+            </script>
+        </head>
+        
+        <body ng-controller="scopeCtrl">
+            <div class="panel panel-default">
+                <div class="panel-body" scope-demo></div>
+                <div class="panel-body" scope-demo></div>
+            </div>
+        </body>
+        
+        </html>
