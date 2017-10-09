@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../module/bootstrap.css">
+    <link rel="stylesheet" href="../module/bootstrap-theme.css">
+    <script src="../module/angular.js"></script>
+    <script type="text/ng-template" id="scopeTemplate">
+        <div class="panel-body">
+           <p>Data Value:{{local}}</p>
+        </div>
+    </script>
+    <script>
+        angular.module("exampleApp",[])
+               .directive("scopeDemo",function(){
+                   return {
+                       template:function(){
+                           return angular.element(document.querySelector("#scopeTemplate")).html()
+                       },
+                       scope:{
+                           local:'@nameprop'
+                       }
+                   }
+               })
+               .controller("scopeCtrl",function($scope){
+                    $scope.data={name:"Adam"}
+               })
+    </script>
+</head>
+<body ng-controller="scopeCtrl">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            Direct Binding <input type="text" ng-model="data.name">
+        </div>
+        <div class="panel-body" scope-demo nameprop="{{data.name}}"></div>
+    </div>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../module/bootstrap.css">
+    <link rel="stylesheet" href="../module/bootstrap-theme.css">
+    <script src="../module/angular.js"></script>
+    <script type="text/ng-template" id="scopeTemplate">
+        <div class="panel-body">
+           <p>Data Value:{{local}}</p>
+           <p>{{final}}</p>
+        </div>
+    </script>
+    <script>
+        angular.module("exampleApp",[])
+               .directive("scopeDemo",function(){
+                   return {
+                       template:function(){
+                           return angular.element(document.querySelector("#scopeTemplate")).html()
+                       },
+                       scope:{
+                           local:'@nameprop'
+                       },
+                       link:function(scope,element,attrs){
+                           
+                            var aaa=attrs["nameprop"];
+                            console.log(aaa)
+                            console.log(scope.local)
+                            console.log(scope.$parent[aaa])//控制器作用域中的值
+                            console.log(scope[aaa])//这一行是为了证明指令控制器不能继承获取作用域控制器中的值
+                            //事实证明aaa的取值方式取得的aaa与local一样，所以会选择local,因为更简单方便
+                            // var scopeValue=scope[aaa];
+                            // console.log(scopeValue);
+                            //写了这么多只是为了证明
+                            //<div class="panel-body" scope-demo nameprop="data"></div>
+                            //中的nameprop="data",这么写获取到的只是data这个字符串
+                            //而<div class="panel-body" scope-demo nameprop="{{data.name}}"></div>
+                            //中的name="{{data.name}}",这么写获取到则是控制器中的数据
+                        }
+                   }
+               })
+               .controller("scopeCtrl",function($scope){
+                    $scope.data={name:"Adam"}
+               })
+    </script>
+</head>
+<body ng-controller="scopeCtrl">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            Direct Binding <input type="text" ng-model="data.name">
+        </div>
+        <div class="panel-body" scope-demo nameprop="data"></div>
+    </div>
+</body>
+</html> -->
