@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../module/bootstrap.css">
+    <link rel="stylesheet" href="../module/bootstrap-theme.css">
+    <script src="../module/angular.js"></script>
+    <script type="text/ng-template" id="scopeTemplate">
+        <div class-"panel-body">
+             <p>Data Value: <input ng-model="local"></p>
+        </div>
+    </script>
+    <script>
+        angular.module("exampleApp",[])
+               .directive("scopeDemo",function(){
+                   return {
+                       template:function(){
+                           return angular.element(document.querySelector("#scopeTemplate")).html()
+                       },
+                       scope:{
+                           local:"=nameprop"
+                       }
+                   }
+               })
+               .controller("scopeCtrl",function($scope){
+                    $scope.data={name:"Adam"}
+               })
+    </script>
+</head>
+<body ng-controller="scopeCtrl">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            Direct Binding :  <input type="text" ng-model="data.name">
+        </div>
+        <div class="panel-body" scope-demo nameprop="data.name"></div>
+        <!-- 注意上一行与16-7的区别 ,在16-7中带入数据的写法是{{data.name}},而双向绑定中的写法直接写字符串-->
+    </div>
+</body>
+</html>
