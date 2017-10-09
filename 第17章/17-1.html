@@ -7,40 +7,39 @@
     <title>Document</title>
     <link rel="stylesheet" href="../module/bootstrap.css">
     <link rel="stylesheet" href="../module/bootstrap-theme.css">
-    <script src="../module/angular.js"></script>
+    <script type="text/javascript" src="../module/angular.js"></script>
     <script type="text/ng-template" id="template">
-         <div class="panel panel-default">
+        <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>
-                    This is the panel
-                </h4>
+                <h4>This is the panel</h4>
             </div>
             <div class="panel-body" ng-transclude>
             </div>
-         </div>
-    </script> 
+        </div>
+    </script>
     <script type="text/javascript">
-        angular.module("exampleApp",[]).directive("panel",function(){
-            return{
-                link:function(scope,element,attrs){
-                    scope.dataSource="directive"
-                },
-                restrict:"E",
-                scope:true,
-                template:function(){
-                    return angular.element(
-                        document.querySelector("#template")).html();
-                },
-                transclude:true
-            }
-        }).controller("defaultCtrl",function($scope){
-            $scope.dataSource="controller";
-        })
+    angular.module("exampleApp",[])
+           .directive("panel",function(){
+                return {
+                    link:function(scope,element, attrs){
+                        scope.dataSource="directive"
+                    },
+                    restrict:"E",
+                    scope:true,
+                    template:function(){
+                        return angular.element(document.querySelector("#template")).html();
+                    },
+                    transclude:true//这里需要注意的是页面模板的panel标签是不会删除的，只是把指令模板的内容添加进去
+                }
+           })
+           .controller("defaultCtrl",function($scope){
+                $scope.dataSource="controller"
+           })   
     </script>
 </head>
 <body ng-controller="defaultCtrl">
     <panel>
-        the data value comes from the: {{dataSource}}
+        the data value comes from the : {{dataSource}}
     </panel>
 </body>
 </html>
