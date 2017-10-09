@@ -29,6 +29,7 @@
                     template:function(){
                         return angular.element(document.querySelector("#template")).html();
                     },
+                    // replace:true,是否移除指令元素所在标签
                     transclude:true//这里需要注意的是页面模板的panel标签是不会删除的，只是把指令模板的内容添加进去
                 }
            })
