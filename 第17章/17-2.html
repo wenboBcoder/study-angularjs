@@ -11,34 +11,34 @@
     <script>
         angular.module("exampleApp",[])
                .controller("defaultCtrl",function($scope){
-                   $scope.products=[
-                       {name:"Apples",price:1.20},
-                       {name:"Bananas",price:2.42},
-                       {name:"Pears",price:2.02}
-                   ],
-                   $scope.changeData=function(){
-                       $scope.products.push({name:"Cherries",price:4.02});
-                       for(var i=0;i<$scope.products.length;i++){
-                           $scope.products[i].price++;
-                       }
-                   }
+                    $scope.products=[
+                        {name:"Apples",price:1.20},
+                        {name:"Bananas",price:2.42},
+                        {name:"Pears",price:2.02}
+                    ];
+                    $scope.changeData=function(){
+                        $scope.products.push({name:"Cherries",price:4.02});
+                        for(var i=0;i<$scope.products.length;i++){
+                            $scope.products[i].price++;
+                        }
+                    };
                })
                .directive("simpleRepeater",function(){
                     return {
                         scope:{
-                            data:'=source',
-                            propName:'@itemName'
+                            data:"=source",
+                            propName:"@itemName"
                         },
-                        transclude:'element',
+                        transclude:true,
                         compile:function(element,attrs,transcludeFn){
-                            return function($scope,$element,$attrs){
-                                $scope.$watch('data.length',function(){
+                            return function($scope,$element,$attr){
+                                $scope.$watch("data.length",function(){
                                     var parent=$element.parent();
-                                    parent.children().remove();
-                                    for(var i=0;i<$scope.data.length;i++){
-                                        var childScope=$scope.$new();
-                                        childScope[$scope.propName]=$scope.data[i];
-                                        transcludeFn(childScope,function(clone){
+                                    parent.children.remove();
+                                    for(var i=0;i<$socpe.data.length;i++){
+                                        var childrenScope=$scope.$new();
+                                        childrenScope[$scope.propName]=$scope.data[i];
+                                        transcludeFn(childrenScope,function(clone){
                                             parent.append(clone)
                                         })
                                     }
@@ -49,15 +49,25 @@
                })
     </script>
 </head>
-<body ng-controller="defaultCtrl" class="panel panel-body">
+<body ng-controller="defautCtrl" class="panel panel-body">
     <table class="table table-striped">
-        <thead><tr><th>Name</th><th>Price</th></tr></thead>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>price</th>
+            </tr>
+        </thead>
         <tbody>
             <tr simple-repeater source="products" item-name="item">
-                 <td>{{item.name}}</td><td>{{item.price | currency }}</td>
+                <td>
+                    {{item.name}}
+                </td>
+                <td>
+                    {{item.price|currency}}
+                </td>
             </tr>
         </tbody>
     </table>
-    <button class="btn btn-default text" ng-click="changeData()"> Change</button>
+    <button class="btn btn-default text" ng-click="changeData()">Change</button>
 </body>
 </html>
