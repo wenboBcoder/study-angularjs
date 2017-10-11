@@ -45,7 +45,7 @@
                 require:"^productTable",
                 link:function(scope,element,attrs,ctrl){
                     scope.$watch("item.quantity",function(){
-                        ctrl.updateTotal();
+                        ctrl.updateTotal();//此处为调用productTable指令的ctrl
                     })
                 }
             }
